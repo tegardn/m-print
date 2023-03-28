@@ -10,6 +10,7 @@ const app = express();
 // init other modules
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const fileUpload = require('express-fileupload');
 
 // init router
 const { router } = require('./Router/Router');
@@ -32,11 +33,14 @@ app.use(
 );
 // Middleware
 app.use(cors());
-app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(fileUpload());
+app.use(express.static("uploads"));
+// app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 
 // routing
 app.use('/', router)
+
 
 // port connection
 app.listen(port, () => `koneksi port ${port}`);

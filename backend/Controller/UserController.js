@@ -60,6 +60,7 @@ class userController {
 
     try {
       const result = await User.findUserByEmail(email);
+
       if (result) {
         res.status(200).json({
           message: "user found",

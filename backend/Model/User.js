@@ -93,7 +93,7 @@ class User {
 
   // show profile model
   static async ShowProfileModel(id) {
-    let sqlQuery = 'SELECT * FROM person WHERE id = 2';
+    let sqlQuery = 'SELECT * FROM person WHERE id = ?';
     let resultUser;
     // console.log(sqlQuery);
 

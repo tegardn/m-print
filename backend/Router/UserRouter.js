@@ -22,7 +22,7 @@ userRouter.post("/login", userController.LoginController);
 userRouter.post("/check", userController.checkUser);
 
 // show profiles
-userRouter.get('/profile', auth, userController.ShowProfileController);
+// userRouter.get('/profile', auth, userController.ShowProfileController);
 
 // export module
 module.exports = { userRouter };
