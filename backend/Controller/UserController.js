@@ -41,7 +41,7 @@ class userController {
       const result = await User.LoginModel(email, password);
 
       if (result.token && result.valid) {
-        res.header("token-auth", result.token).status(200).json(result);
+        res.status(200).json(result);
       } else {
         res.status(400).json(result);
       }
@@ -77,13 +77,27 @@ class userController {
 
   // show profile
   static async ShowProfileController(req, res) {
-    const userId = req.user.id;
-    console.log(userId);
+    const { userId } = req;
 
     try {
-      const result = await User.ShowProfileModel(userId);
+      const result = await User.ShowProfileModel(+userId);
 
       res.status(200).json({ message: result });
+    } catch (err) {
+      res.status(500).json({ message: err });
+    }
+  }
+
+  // search users
+  static async searchUsersController(req, res) {
+    const nama_user = req.query.nama_user;
+
+    try {
+      const result = await User.SearchUserModel(nama_user);
+
+      if (result) {
+        res.status(200).json({ message: result });
+      }
     } catch (err) {
       res.status(500).json({ message: err });
     }

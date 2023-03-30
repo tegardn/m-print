@@ -2,27 +2,42 @@
 
 const jwt = require("jsonwebtoken");
 
-const auth = async (req, res, next) => {
-  const token = req.header("token-auth");
+const auth = (req, res, next) => {
+  // const token = req.header("token-auth");
 
-  //   const token = authHeader && authHeader.split(" ")[1];
+  // //   const token = authHeader && authHeader.split(" ")[1];
 
-  if (!token) {
-    return res.status(400).json({ message: "Invalid authorization" });
+  // if (!token) {
+  //   return res.status(400).json({ message: "Invalid authorization" });
+  // }
+
+  // try {
+  //   jwt.verify( token, process.env.JWT_KEY, (err, user) => {
+  //       if (err) {
+  //         return res.sendStatus(400);
+  //       }
+
+  //       req.user = user;
+  //     }
+  //   );
+  //   next();
+  // } catch (err) {
+  //   res.status(400).json({ message: "Invalid authorization" });
+  // }
+
+  const authheader = req.headers["authorization"];
+  const token = authheader && authheader.split(" ")[1];
+
+  if (token === null) {
+    res.status(400).json({ message: "Invalid authorization" });
   }
 
   try {
-    jwt.verify( token, process.env.JWT_KEY, (err, user) => {
-        if (err) {
-          return res.sendStatus(400);
-        }
-         
-        req.user = user; 
-      }
-    );
+    const decoded = jwt.verify(token, process.env.JWT_KEY);
+    req.userId = decoded.userId;
     next();
   } catch (err) {
-    res.status(400).json({ message: "Invalid authorization" });
+    res.status(500).json({ message: err });
   }
 };
 

@@ -44,7 +44,6 @@ class User {
     try {
       // find user
       const user = await this.FindUserByEmail(email);
-      console.log(user.password);
       let hashedToken;
 
       if (user) {
@@ -84,7 +83,6 @@ class User {
     try {
       const user = await connectSql(sqlQuery, [email]);
       resultUser = user[0];
-      console.log(user);
       return resultUser;
     } catch (err) {
       throw new Error(`Error in findUserByEmail: ${err}`);
@@ -99,7 +97,6 @@ class User {
 
     try {
       const user = await connectSql(sqlQuery, [id]);
-      console.log(user)
       const results = user[0];
       resultUser = new User(results.nama, results.email, results.password, results.no_hp, results.alamat, results.role, results.create_at, results.update_at);
 
@@ -109,6 +106,20 @@ class User {
       throw new Error(`Error in findUserById: ${err}`);
     }
 
+  }
+
+  static async SearchUserModel(q) {
+    let sqlQuery = `SELECT * FROM person WHERE nama LIKE '%${q}%'`;
+
+    try {
+      const response = await connectSql(sqlQuery, [q]);
+
+      if (response) {
+        return response;
+      }
+    } catch (err) {
+      throw new Error(err);
+    }
   }
 }
 

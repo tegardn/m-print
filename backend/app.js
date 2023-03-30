@@ -23,14 +23,6 @@ let originOptionsCors = {
     origin: `http://localhost:${port}`
 };
 
-app.use(
-    cors({
-        origin : '*',
-        methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-        preflightContinue : false,
-        optionsSuccessStatus: 204,
-    })
-);
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());

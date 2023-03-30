@@ -60,54 +60,6 @@ class PrinterController {
   }
 
   // update product
-  // static async UpdateProductController(req, res) {
-  //   const { id } = req.params;
-  //   const productResult = await Printer.GetProductsByIdModel(+id);
-  //   console.log(productResult);
-
-  //   if (!productResult) {
-  //     return res.status(404).json({ message: "produk tidak ada" });
-  //   }
-
-  //   let fileGambar = "";
-
-  //   if (req.files === null) {
-  //     fileGambar = productResult.gambar;
-  //   } else {
-  //     const gambar = req.files.gambar;
-  //     console.log(gambar);
-  //     const ext = path.extname(gambar.name);
-  //     fileGambar = gambar.md5 + ext;
-
-  //     const fileGambarUrl = `./uploads/${productResult.gambar}`;
-  //     fs.unlinkSync(fileGambarUrl);
-
-  //     gambar.mv(`./uploads/${fileGambar}`, async (err) => {
-  //       if (err) {
-  //         res.status(500).json("upload gagal");
-  //       } else {
-  //         const { nama_produk, harga_produk, stok, deskripsi } = req.body;
-
-  //         try {
-  //           const result = await Printer.UpdateProductModel(
-  //             nama_produk,
-  //             harga_produk,
-  //             stok,
-  //             deskripsi,
-  //             fileGambar,
-  //             +id
-  //           );
-
-  //           if (result) {
-  //             res.status(200).json({ message: result });
-  //           }
-  //         } catch (err) {
-  //           res.status(500).json({ message: err });
-  //         }
-  //       }
-  //     });
-  //   }
-  // }
   static async UpdateProductController(req, res) {
     const {id} = req.params
     const product = await Printer.GetProductsByIdModel(+id);
