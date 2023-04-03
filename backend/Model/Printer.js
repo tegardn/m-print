@@ -4,13 +4,14 @@
 const { db, connectSql } = require("../Config/db");
 
 class Printer {
-  constructor(id_produk, nama_produk, harga_produk, stok, deskripsi, gambar) {
+  constructor(id_produk, nama_produk, harga_produk, stok, deskripsi, gambar, url_gambar) {
     this.id_produk = id_produk;
     this.nama_produk = nama_produk;
     this.harga_produk = harga_produk;
     this.stok = stok;
     this.deskripsi = deskripsi;
     this.gambar = gambar;
+    this.url_gambar = url_gambar;
   }
 
   // Get all products
@@ -29,7 +30,8 @@ class Printer {
           i.harga_produk,
           i.stok,
           i.deskripsi,
-          i.gambar
+          i.gambar,
+          i.url_gambar
         );
         datas.push(data);
       });
@@ -54,7 +56,8 @@ class Printer {
           data.harga_produk,
           data.stok,
           data.deskripsi,
-          data.gambar
+          data.gambar,
+          data.url_gambar
         );
       }
       return dataById;
@@ -69,10 +72,11 @@ class Printer {
     harga_produk,
     stok,
     deskripsi,
-    gambar
+    gambar,
+    url_gambar
   ) {
     const querySql =
-      "INSERT INTO printer(nama_produk, harga_produk, stok, deskripsi,gambar) VALUES(?,?,?,?,?)";
+      "INSERT INTO printer(nama_produk, harga_produk, stok, deskripsi,gambar,url_gambar) VALUES(?,?,?,?,?,?)";
 
     try {
       const createProduct = await connectSql(querySql, [
@@ -80,7 +84,8 @@ class Printer {
         harga_produk,
         stok,
         deskripsi,
-        gambar
+        gambar,
+        url_gambar
       ]);
 
       if (createProduct) {
@@ -98,10 +103,11 @@ class Printer {
     stok,
     deskripsi,
     gambar,
+    url_gambar,
     id_produk,
   ) {
     const querySql =
-      "UPDATE printer SET nama_produk = ?, harga_produk = ?, stok = ?, deskripsi = ?, gambar = ? WHERE id_produk = ?";
+      "UPDATE printer SET nama_produk = ?, harga_produk = ?, stok = ?, deskripsi = ?, gambar = ?, url_gambar = ? WHERE id_produk = ?";
 
     try {
       const updateProduct = await connectSql(querySql, [
@@ -110,6 +116,7 @@ class Printer {
         stok,
         deskripsi,
         gambar,
+        url_gambar,
         id_produk,
       ]);
 

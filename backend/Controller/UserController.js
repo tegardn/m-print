@@ -55,7 +55,7 @@ class userController {
   }
 
   // checkuser
-  static async checkUser(req, res) {
+  static async CheckUser(req, res) {
     const { email } = req.body;
 
     try {
@@ -88,8 +88,20 @@ class userController {
     }
   }
 
+  // show customers
+  static async ShowUsersController(req, res) {
+    try {
+      const result = await User.ShowUsersModel();
+      if (result) {
+        res.status(200).json({ message: result})
+      }
+    } catch (err) {
+      res.status(500).json({ message: err });
+    }
+  }
+
   // search users
-  static async searchUsersController(req, res) {
+  static async SearchUsersController(req, res) {
     const nama_user = req.query.nama_user;
 
     try {

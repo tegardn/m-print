@@ -1,0 +1,23 @@
+header {
+    background-color: #16161a;
+    display: flex;
+    color: #fffffe;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 40px;
+}
+
+header img {
+    width: 60px;
+}
+
+.profile-customer {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #7f5af0;
+    border-radius: 50%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    overflow: hidden;
+}

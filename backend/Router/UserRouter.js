@@ -19,13 +19,16 @@ userRouter.post('/register', userController.RegisterController);
 userRouter.post("/login", userController.LoginController);
 
 // check user Router
-userRouter.post("/check", userController.checkUser);
+userRouter.post("/check", userController.CheckUser);
+
+// show customer
+userRouter.get('/users', auth, userController.ShowUsersController)
 
 // show profiles
 userRouter.get('/profile', auth, userController.ShowProfileController);
 
 // search
-userRouter.get('/search-user', userController.searchUsersController )
+userRouter.get('/search-user', userController.SearchUsersController )
 
 // export module
 module.exports = { userRouter };

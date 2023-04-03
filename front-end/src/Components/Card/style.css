@@ -1,0 +1,17 @@
+.card {
+    padding: 20px 165px;
+    border: 1px solid black;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 10px;
+}
+
+.card p {
+    font-size: 1.5rem;
+}
+
+.card P:last-of-type {
+    color: #7f5af0
+}

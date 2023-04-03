@@ -1,0 +1,11 @@
+.layout {
+    padding-left: 230px;
+    width: 95%;
+    padding-top: 20px;
+}
+
+.p-component {
+    display: flex;
+    justify-content: flex-end;
+    padding-bottom: 80px;
+}

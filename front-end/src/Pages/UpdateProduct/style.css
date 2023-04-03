@@ -1,0 +1,46 @@
+.update-title {
+    text-align: center;
+}
+
+.update-container {
+    width: 60%;
+    margin: 50px auto;
+}
+
+input {
+    border: none;
+    outline: none;
+    font-size: 0.8rem;
+    width: 100%;
+    color: #16161a;
+}
+
+.input-update {
+    border: 1px solid #010101;
+    padding: 10px 12px;
+    display: flex;
+    border-radius: 5px;
+    margin-top: 3px;
+    margin-bottom: 15px;
+    align-items: center;
+    column-gap: 8px;
+}
+
+.gambar-product-update .input-update {
+    border: none;
+    padding: 10px 0;
+}
+
+.btn-update {
+    text-align: center;
+    font-size: 1.1rem;
+    background-color: #7f5af0;
+    border: none;
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    color: #fffffe;
+    margin-bottom: 6px;
+    font-weight: 500;
+}
+

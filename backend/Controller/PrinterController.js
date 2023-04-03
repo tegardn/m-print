@@ -39,6 +39,7 @@ class PrinterController {
     const gambar = req.files.gambar;
     const ext = path.extname(gambar.name);
     const fileGambar = gambar.md5 + ext;
+    const url = `${req.protocol}://${req.get("host")}/uploads/${fileGambar}`;
 
     gambar.mv(`./uploads/${fileGambar}`, async () => {
       try {
@@ -47,7 +48,8 @@ class PrinterController {
           harga_produk,
           stok,
           deskripsi,
-          fileGambar
+          fileGambar,
+          url
         );
 
         if (result) {
@@ -82,10 +84,11 @@ class PrinterController {
         if (err) return res.status(500).json({ msg: err.message });
       });
     }
-    const {nama_produk, harga_produk, stok, deskripsi } = req.body;
+    const { nama_produk, harga_produk, stok, deskripsi } = req.body;
+    const url = `${req.protocol}://${req.get("host")}/uploads/${fileName}`;
 
     try {
-      await Printer.UpdateProductModel(nama_produk, harga_produk, stok, deskripsi, fileName, +id);
+      await Printer.UpdateProductModel(nama_produk, harga_produk, stok, deskripsi, fileName, url, +id);
       res.status(200).json({ msg: "Produk Berhasil diperbaharui" });
     } catch (error) {
       console.log(error.message);

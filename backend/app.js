@@ -27,7 +27,7 @@ let originOptionsCors = {
 app.use(cors());
 app.use(bodyParser.json());
 app.use(fileUpload());
-app.use(express.static("uploads"));
+app.use('/uploads', express.static("uploads"));
 // app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 
 // routing

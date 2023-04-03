@@ -1,0 +1,67 @@
+.box-register {
+    padding: 94px;
+}
+
+.register-container {
+    padding: 20px 50px;
+    background-color: #fffffe;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-direction: column;
+}
+
+.register-title {
+    padding-bottom: 30px;
+    font-size: 2rem;
+}
+
+input {
+    border: none;
+    outline: none;
+    font-size: 0.8rem;
+    width: 100%;
+    color: #16161a;
+}
+
+.email-register, .password-register, .username-register, .telepon-register, .alamat-register {
+    border: 1px solid #010101;
+    padding: 10px 12px;
+    display: flex;
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    align-items: center;
+    column-gap: 8px;
+}
+
+.container-name-telp-register, .container-email-pass-register {
+    display: flex;
+    column-gap: 15px;
+}
+
+.btn-register {
+    font-size: 1.1rem;
+    background-color: #7f5af0;
+    padding: 12px;
+    width: 100%;
+    font-weight: 700;
+    border-radius: 10px;
+    color: #fffffe;
+    margin-bottom: 6px;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+}
+
+.link-login {
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+.link-login .link {
+    color: #7f5af0;
+    font-weight: 700;
+    text-decoration: underline;
+}

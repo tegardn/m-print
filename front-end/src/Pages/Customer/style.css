@@ -1,0 +1,36 @@
+.search-user {
+    border: 1px solid black;
+    padding: 10px;
+    width: 30%;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 30px;
+}
+
+.user-table th {
+    font-size: 1.2rem;
+    background-color: #16161a;
+    color: #fffffe;
+}
+
+.user-table th,
+.user-table td {
+    padding: 10px 12px;
+    border: 1px solid black;
+}
+
+.user-table td:nth-of-type(5),
+.user-table td:nth-of-type(2),
+.user-table td:nth-of-type(4),
+.user-table td:last-of-type {
+    text-align: center;
+}
+

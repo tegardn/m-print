@@ -1,0 +1,59 @@
+.search-product {
+    border: 1px solid black;
+    padding: 10px;
+    margin-right: 20px;
+    width: 30%;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 30px 0;
+}
+
+.add-product {
+    border: 1px solid black;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.product-table th {
+    font-size: 1.2rem;
+    background-color: #16161a;
+    color: #fffffe;
+}
+
+.product-table th,
+.product-table td {
+    padding: 10px 12px;
+    border: 1px solid black;
+}
+
+.product-table td:nth-of-type(5),
+.product-table td:nth-of-type(2),
+.product-table td:nth-of-type(4),
+.product-table td:last-of-type {
+    text-align: center;
+}
+
+.product-table td:nth-of-type(3) {
+    width: 25%;
+}
+
+.product-table td:first-of-type {
+    width: 35%;
+}

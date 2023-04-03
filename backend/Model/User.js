@@ -48,6 +48,8 @@ class User {
 
       if (user) {
         hashedToken = user.password;
+        const role = user.role;
+        console.log(role);
         const valid = await verifyPass(password, hashedToken);
 
         if (!valid) {
@@ -66,6 +68,7 @@ class User {
             user: true,
             valid,
             token,
+            role: role,
             message: "Login success"
           }
         }
@@ -108,8 +111,9 @@ class User {
 
   }
 
+  // search customers
   static async SearchUserModel(q) {
-    let sqlQuery = `SELECT * FROM person WHERE nama LIKE '%${q}%'`;
+    let sqlQuery = `SELECT * FROM person WHERE nama LIKE '%${q}%' AND role = 'user'`;
 
     try {
       const response = await connectSql(sqlQuery, [q]);
@@ -117,6 +121,39 @@ class User {
       if (response) {
         return response;
       }
+    } catch (err) {
+      throw new Error(err);
+    }
+  }
+
+  // show customers
+  static async ShowUsersModel() {
+    const sqlQuery = `SELECT * FROM person WHERE role = 'user'`;
+
+    try {
+      const response = await connectSql(sqlQuery);
+      
+      let datas = [];
+      let data;
+
+      response.forEach((i) => {
+        data = new User(
+          i.nama,
+          i.email,
+          i.password,
+          i.no_hp,
+          i.alamat,
+          i.role,
+          i.create_at,
+          i.update_at
+        );
+
+        datas.push(data);
+
+      });
+
+      return datas;
+
     } catch (err) {
       throw new Error(err);
     }

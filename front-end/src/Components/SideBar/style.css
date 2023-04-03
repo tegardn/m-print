@@ -5,13 +5,36 @@
     position: fixed;
     top: 0;
     left: 0;
-    padding-top: 20px;
-    font-display: flex;
+    padding: 20px 0;
+    display: flex;
     flex-direction: column;
+    justify-content: space-between;
     align-items: center;
 }
 
-ul {
+.container-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 30px;
+}
+
+.menu {
     list-style: none;
     color: #fffffe;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:center;
+    gap: 10px;
+}
+
+.btn-logout {
+    color: #fffffe;
+    display: flex;
+    font-size: 18px;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
 }
