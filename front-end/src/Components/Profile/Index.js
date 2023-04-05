@@ -12,12 +12,13 @@ export default function Profile() {
 
   async function showProfile() {
     try {
-      const res = await axios.get("http://localhost:5000/profile", {
+      const res = await axios.get("http://localhost:8000/profile", {
         headers: {
           "Authorization" : `Bearer ${token}`
         }
       })
-      setUser(res.data.message.nama)
+      console.log(res.data.message.username)
+      setUser(res.data.message.username)
     } catch (err) {
       console.log(err);
     }

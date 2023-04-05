@@ -35,19 +35,19 @@ class PrinterController {
 
   // add product
   static async AddProductController(req, res) {
-    const { nama_produk, harga_produk, stok, deskripsi } = req.body;
+    const { nama_product, harga_product, stock, description } = req.body;
     const gambar = req.files.gambar;
     const ext = path.extname(gambar.name);
     const fileGambar = gambar.md5 + ext;
-    const url = `${req.protocol}://${req.get("host")}/uploads/${fileGambar}`;
+    const url = `${req.protocol}://${req.get("host")}/images/${fileGambar}`;
 
-    gambar.mv(`./uploads/${fileGambar}`, async () => {
+    gambar.mv(`./images/${fileGambar}`, async () => {
       try {
         const result = await Printer.AddProductModel(
-          nama_produk,
-          harga_produk,
-          stok,
-          deskripsi,
+          nama_product,
+          harga_product,
+          stock,
+          description,
           fileGambar,
           url
         );
@@ -63,32 +63,42 @@ class PrinterController {
 
   // update product
   static async UpdateProductController(req, res) {
-    const {id} = req.params
+    const { id } = req.params;
     const product = await Printer.GetProductsByIdModel(+id);
+    console.log(product.nama_gambar);
 
     if (!product) return res.status(404).json({ msg: "Data Tidak ditemukan" });
 
-    let fileName = "";
+    let namaFile = "";
     if (req.files === null) {
-      fileName = Printer.gambar;
+      namaFile = Printer.gambar;
     } else {
       const gambar = req.files.gambar;
       const ext = path.extname(gambar.name);
-      fileName = gambar.md5 + ext;
+      namaFile = gambar.md5 + ext;
 
       //change old file with new file
-      const filepath = `./uploads/${product.gambar}`;
+      const filepath = `./images/${product.nama_gambar}`;
       fs.unlinkSync(filepath);
 
-      gambar.mv(`./uploads/${fileName}`, (err) => {
+      gambar.mv(`./images/${namaFile}`, (err) => {
         if (err) return res.status(500).json({ msg: err.message });
       });
     }
-    const { nama_produk, harga_produk, stok, deskripsi } = req.body;
-    const url = `${req.protocol}://${req.get("host")}/uploads/${fileName}`;
+    
+    const { nama_product, harga_product, stock, description } = req.body;
+    const url = `${req.protocol}://${req.get("host")}/images/${namaFile}`;
 
     try {
-      await Printer.UpdateProductModel(nama_produk, harga_produk, stok, deskripsi, fileName, url, +id);
+      await Printer.UpdateProductModel(
+        nama_product,
+        harga_product,
+        stock,
+        description,
+        namaFile,
+        url,
+        +id
+      );
       res.status(200).json({ msg: "Produk Berhasil diperbaharui" });
     } catch (error) {
       console.log(error.message);
@@ -102,7 +112,7 @@ class PrinterController {
     console.log(productResult);
 
     try {
-      const fileGambarUrl = `./uploads/${productResult.gambar}`;
+      const fileGambarUrl = `./images/${productResult.nama_gambar}`;
       fs.unlinkSync(fileGambarUrl);
 
       const result = await Printer.DeleteProductModel(+id);
@@ -111,16 +121,16 @@ class PrinterController {
         res.status(200).json({ message: result });
       }
     } catch (err) {
-      res.status(500).json({ message: err });
+      res.status(500).json({ message: err.message });
     }
   }
 
   // search
   static async SearchProductController(req, res) {
-    const nama_produk = req.query.nama_produk;
+    const nama_product = req.query.nama_product;
 
     try {
-      const result = await Printer.SearchProductModel(nama_produk);
+      const result = await Printer.SearchProductModel(nama_product);
 
       if (result) {
         res.status(200).json({ message: result });

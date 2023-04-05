@@ -28,7 +28,7 @@ userRouter.get('/users', auth, userController.ShowUsersController)
 userRouter.get('/profile', auth, userController.ShowProfileController);
 
 // search
-userRouter.get('/search-user', userController.SearchUsersController )
+userRouter.get('/search-user', userController.SearchUsersController)
 
 // export module
 module.exports = { userRouter };

@@ -22,18 +22,18 @@ export default function UpdateProduct() {
   // getProductUpdate
   async function getProductUpdate() {
     try {
-      const res = await axios.get(`http://localhost:5000/product/${id}`, {
+      const res = await axios.get(`http://localhost:8000/product/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
 
       // console.log(res);
-      setName(res.data.message.nama_produk);
-      setDesc(res.data.message.deskripsi);
-      setPrice(res.data.message.harga_produk);
-      setStock(res.data.message.stok);
-      setImage(res.data.message.image_produk);
+      setName(res.data.message.nama_product);
+      setDesc(res.data.message.description);
+      setPrice(res.data.message.harga_product);
+      setStock(res.data.message.stock);
+      setImage(res.data.message.nama_gambar);
     } catch (err) {
       console.log(err);
     }
@@ -46,29 +46,33 @@ export default function UpdateProduct() {
     setImage(img);
   }
 
-    // proses add
-    async function updateProduct(e) {
-      e.preventDefault();
-  
-      try {
-        const res = await axios.patch(`http://localhost:5000/product/update/${id}`, {
-          nama_produk: name,
-          harga_produk: price,
-          stok: stock,
-          deskripsi: desc,
-          gambar: image
-        }, {
+  // proses add
+  async function updateProduct(e) {
+    e.preventDefault();
+
+    try {
+      const res = await axios.patch(
+        `http://localhost:8000/product/update/${id}`,
+        {
+          nama_product: name,
+          harga_product: price,
+          stock: stock,
+          description: desc,
+          gambar: image,
+        },
+        {
           headers: {
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'multipart/form-data'
-          }
-        });
-  
-        push("/products");
-      } catch (err) {
-        console.error(err);
-      }
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      push("/products");
+    } catch (err) {
+      console.error(err);
     }
+  }
 
   // end product
   useEffect(() => {

@@ -21,7 +21,6 @@ export default function AddProduct() {
   // proses file image
   function addImage(e) {
     const img = e.target.files[0];
-    console.log(img);
     setImage(img);
   }
 
@@ -30,11 +29,11 @@ export default function AddProduct() {
     e.preventDefault();
 
     try {
-      const res = await axios.post('http://localhost:5000/product/add', {
-        nama_produk: name,
-        harga_produk: price,
-        stok: stock,
-        deskripsi: desc,
+      const res = await axios.post('http://localhost:8000/product/add', {
+        nama_product: name,
+        harga_product: price,
+        stock: stock,
+        description: desc,
         gambar: image
       }, {
         headers: {
@@ -42,6 +41,8 @@ export default function AddProduct() {
           'Content-Type': 'multipart/form-data'
         }
       });
+
+      console.log(res);
 
       push("/products");
     } catch (err) {

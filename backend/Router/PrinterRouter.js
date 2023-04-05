@@ -13,7 +13,7 @@ const { auth } = require('../Middleware/Auth');
 // endpoint printer router
 
 // menampilkan produk
-printerRouter.get('/products', auth ,PrinterController.GetProductsController);
+printerRouter.get('/products', PrinterController.GetProductsController);
 
 // menampilkan produk berdasarkan id
 printerRouter.get('/product/:id', auth ,PrinterController.ShowProductByIdController);

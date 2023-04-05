@@ -8,19 +8,14 @@ class userController {
   // register
   static async RegisterController(req, res) {
     try {
-      const { nama, email, password, no_hp, alamat, role } = req.body;
-      const {created_at, updated_at} = "current_timestamp()"
+      const { username, no_telp, email, password } = req.body;
 
       // Create a new user
       const userId = await User.RegisterModel(
-        nama,
+        username,
+        no_telp,
         email,
-        password,
-        no_hp,
-        alamat,
-        role,
-        created_at,
-        updated_at
+        password
       );
 
       res.status(200).json({
@@ -34,22 +29,22 @@ class userController {
   }
 
   // login
-  static async LoginController(req, res) {
+  static async LoginController(req, res, next) {
     const { email, password } = req.body;
 
     try {
       const result = await User.LoginModel(email, password);
-
+      console.log(result)
       if (result.token && result.valid) {
         res.status(200).json(result);
       } else {
         res.status(400).json(result);
       }
+      next()
     } catch (err) {
-      console.error(err);
-
-      res.status(500).json({
-        error: err, 
+      console.log(err)
+      res.status(401).json({
+        message: err,
       });
     }
   }
@@ -59,18 +54,18 @@ class userController {
     const { email } = req.body;
 
     try {
-      const result = await User.findUserByEmail(email);
+      const result = await User.FindUserByEmail(email);
 
-      if (result) {
+      if(result) {
         res.status(200).json({
           message: "user found",
-          User: true,
+          user: true,
         });
       }
     } catch (err) {
       res.status(400).json({
         message: err,
-        User: false,
+        user: false,
       });
     }
   }
@@ -93,7 +88,7 @@ class userController {
     try {
       const result = await User.ShowUsersModel();
       if (result) {
-        res.status(200).json({ message: result})
+        res.status(200).json({ message: result });
       }
     } catch (err) {
       res.status(500).json({ message: err });

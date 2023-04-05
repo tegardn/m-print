@@ -8,7 +8,7 @@ export default function Menu() {
   return (
     <ul className="menu">
       <li>
-        <Link to="/" className='link'>Overview</Link>
+        <Link to="/admin" className='link'>Overview</Link>
       </li>
       <li>
         <Link to="customers" className='link'>Customer</Link>

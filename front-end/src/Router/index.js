@@ -24,7 +24,7 @@ export default function Router() {
     <Routes>
       <Route element={<ProtectRoute />}>
         <Route element={<AdminLayout />}>
-          <Route path="admin" element={<Overview />} />
+          <Route path="/admin" element={<Overview />} />
           <Route path="/customers" element={<Customer />} />
           <Route path="/products" element={<Product />} />
           <Route path="/products/add" element={<AddProduct />} />
@@ -36,7 +36,7 @@ export default function Router() {
       </Route>
       <Route element={<AuthLayout />}>
         <Route path="/login" element={<Login />} />
-        <Route path="/register-admin" element={<RegisterAdmin />} />
+        <Route path="/register" element={<RegisterAdmin />} />
       </Route>
     </Routes>
   );

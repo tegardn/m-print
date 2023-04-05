@@ -1,5 +1,5 @@
 import React from 'react'
-import LogoGlobal from '../../Assets/logo.svg'
+import LogoGlobal from '../../Assets/Logo-Emprint.png'
 import './style.css'
 
 export default function Logo() {

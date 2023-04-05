@@ -23,12 +23,13 @@ export default function Product() {
   // proses get data
   async function getDataProduct() {
     try {
-      const res = await axios.get("http://localhost:5000/products", {
+      const res = await axios.get("http://localhost:8000/products", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
       setDatas(res.data.message);
+      // console(res.data);
     } catch (err) {
       console.log(err);
     }
@@ -37,7 +38,7 @@ export default function Product() {
   // delete data
   async function deleteProduct(id) {
     try {
-      await axios.delete(`http://localhost:5000/product/del/${id}`, {
+      await axios.delete(`http://localhost:8000/product/del/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -52,7 +53,7 @@ export default function Product() {
   //search product result 
   async function searchProductResult(value) {
     try {
-      const res = await axios.get(`http://localhost:5000/search?nama_produk=${value}`);
+      const res = await axios.get(`http://localhost:8000/search?nama_product=${value}`);
       setDatas(res.data.message);
     } catch (err) {
       console.log(err);
@@ -106,15 +107,15 @@ export default function Product() {
           </tr>
           {datas.map((data, index) => (
             <tr key={index}>
-              <td>{data.nama_produk}</td>
+              <td>{data.nama_product}</td>
               <td>
-                <img src={data.url_gambar} alt={data.gambar} />
+                <img src={data.url_gambar} alt={data.nama_gambar} />
               </td>
-              <td>{data.deskripsi}</td>
-              <td>{data.harga_produk}</td>
-              <td>{data.stok}</td>
+              <td>{data.description}</td>
+              <td>{data.harga_product}</td>
+              <td>{data.stock}</td>
               <td>
-                <Link to={`/products/edit/${data.id_produk}`}>
+                <Link to={`/products/edit/${data.id_product}`}>
                   <FontAwesomeIcon
                     icon={faPen}
                     style={{
@@ -125,7 +126,7 @@ export default function Product() {
                   />
                 </Link>
                 <FontAwesomeIcon
-                  onClick={() => deleteProduct(data.id_produk)}
+                  onClick={() => deleteProduct(data.id_product)}
                   icon={faTrash}
                   style={{
                     fontSize: "18px",

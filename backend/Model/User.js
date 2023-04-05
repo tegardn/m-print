@@ -8,27 +8,23 @@ const { hashPass, verifyPass } = require("../Helper/ConvertPass");
 const jwt = require("jsonwebtoken");
 
 class User {
-  constructor(nama, email, password, no_hp, alamat, role, create_at, update_at) {
-    this.nama = nama;
+  constructor( username, no_telp, email, password) {
+    this.username = username;
+    this.no_telp = no_telp;
     this.email = email;
     this.password = password;
-    this.no_hp = no_hp;
-    this.alamat = alamat;
-    this.role = role;
-    this.create_at = create_at;
-    this.update_at = update_at;
   }
 
   // registermodel
-  static async RegisterModel(nama, email, password, no_hp, alamat, role, create_at, update_at) {
+  static async RegisterModel(username, no_telp, email, password) {
     //query sql
-    const sqlQuery = "INSERT INTO person (nama, email, password, no_hp, alamat, role, create_at, update_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    const sqlQuery = "INSERT INTO admin (username, no_telp, email, password) VALUES (?, ?, ?, ?)";
 
     try {
       const hasher = await hashPass(password);
 
       // Execute an SQL query to insert the user into the database
-      const user = await connectSql(sqlQuery, [nama, email, hasher, no_hp, alamat, role, create_at, update_at]);
+      const user = await connectSql(sqlQuery, [username, no_telp, email, hasher]);
 
       if (user) {
         return 'user created';
@@ -48,8 +44,7 @@ class User {
 
       if (user) {
         hashedToken = user.password;
-        const role = user.role;
-        console.log(role);
+        console.log(hashedToken);
         const valid = await verifyPass(password, hashedToken);
 
         if (!valid) {
@@ -62,25 +57,24 @@ class User {
         }
 
         if (valid) {
-          const token = jwt.sign({ userId: user.id }, process.env.JWT_KEY);
-    
+          const token = jwt.sign({ userId: user.id_admin }, process.env.JWT_SECRET);
           return {
             user: true,
             valid,
             token,
-            role: role,
             message: "Login success"
           }
         }
       }
     } catch (err) {
-      throw new Error("User not found");
+      console.log(err)
+      return err
     }
   }
 
   // find user by email
   static async FindUserByEmail(email) {
-    let sqlQuery = 'SELECT * FROM person WHERE email = ?';
+    let sqlQuery = 'SELECT * FROM admin WHERE email = ?';
     let resultUser;
 
     try {
@@ -94,16 +88,16 @@ class User {
 
   // show profile model
   static async ShowProfileModel(id) {
-    let sqlQuery = 'SELECT * FROM person WHERE id = ?';
+    let sqlQuery = 'SELECT * FROM admin WHERE id_admin = ?';
     let resultUser;
-    // console.log(sqlQuery);
+
 
     try {
       const user = await connectSql(sqlQuery, [id]);
-      const results = user[0];
-      resultUser = new User(results.nama, results.email, results.password, results.no_hp, results.alamat, results.role, results.create_at, results.update_at);
+      const result = user[0];
+      resultUser = new User(result.username, result.no_telp, result.email, result.password);
 
-      // console.log(resultUser);
+      console.log(resultUser);
       return resultUser;
     } catch (err) {
       throw new Error(`Error in findUserById: ${err}`);
@@ -113,7 +107,7 @@ class User {
 
   // search customers
   static async SearchUserModel(q) {
-    let sqlQuery = `SELECT * FROM person WHERE nama LIKE '%${q}%' AND role = 'user'`;
+    let sqlQuery = `SELECT * FROM costumer WHERE username LIKE '%${q}%'`;
 
     try {
       const response = await connectSql(sqlQuery, [q]);
@@ -128,7 +122,7 @@ class User {
 
   // show customers
   static async ShowUsersModel() {
-    const sqlQuery = `SELECT * FROM person WHERE role = 'user'`;
+    const sqlQuery = `SELECT * FROM costumer`;
 
     try {
       const response = await connectSql(sqlQuery);
@@ -141,11 +135,8 @@ class User {
           i.nama,
           i.email,
           i.password,
-          i.no_hp,
+          i.no_telp,
           i.alamat,
-          i.role,
-          i.create_at,
-          i.update_at
         );
 
         datas.push(data);

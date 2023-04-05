@@ -25,19 +25,12 @@ export default function Login() {
     e.preventDefault();
 
     try {
-      const res = await axios.post("http://localhost:5000/login", {
+      const res = await axios.post("http://localhost:8000/login", {
         email: email,
         password: password,
       });
-      if (res.status === 200 && res.data.role === "admin") {
-        console.log(res);
-        localStorage.setItem('Authorization', res.data.token);
-        push('/admin');
-      } else {
-        console.log(res);
-        localStorage.setItem('Authorization', res.data.token);
-        push('/');
-      }
+      localStorage.setItem("Authorization", res.data.token);
+      push("/admin");
     } catch (err) {
       console.log(err);
     }
@@ -58,15 +51,31 @@ export default function Login() {
               icon={faEnvelope}
               style={{ color: "#7f5af0", fontSize: "1.5rem" }}
             />
-            <input type="email" name="email" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} />
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
           </div>
           <div className="password-login">
             <FontAwesomeIcon
               icon={faLock}
               style={{ color: "#7f5af0", fontSize: "1.5rem" }}
             />
-            <input type={showPassword ? "text" : "password"} name="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} />
-            <FontAwesomeIcon onClick={showPass} icon={showPassword ? faEyeSlash : faEye} style={{color: "#7f5af0", fontSize: "1.2rem"}} />
+            <input
+              type={showPassword ? "text" : "password"}
+              name="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <FontAwesomeIcon
+              onClick={showPass}
+              icon={showPassword ? faEyeSlash : faEye}
+              style={{ color: "#7f5af0", fontSize: "1.2rem" }}
+            />
           </div>
           <Button className="btn-login" textbtn="Login" accept="submit" />
           <p className="link-register">

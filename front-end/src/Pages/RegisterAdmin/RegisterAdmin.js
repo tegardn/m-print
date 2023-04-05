@@ -25,7 +25,6 @@ export default function RegisterAdmin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [telp, setTelp] = useState("");
-  const [alamat, setAlamat] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const push = useNavigate();
 
@@ -34,13 +33,11 @@ export default function RegisterAdmin() {
     e.preventDefault();
 
     try {
-      const res = await axios.post("http://localhost:5000/register", {
-        nama: name,
-        email: email,
-        password: password,
-        no_hp: telp,
-        alamat: alamat,
-        role: "admin",
+      const res = await axios.post("http://localhost:8000/register", {
+        username : name,
+        no_telp : telp,
+        email : email,
+        password : password
       });
 
       console.log(res);
@@ -126,7 +123,7 @@ export default function RegisterAdmin() {
               <FontAwesomeIcon onClick={showPass} icon={showPassword ? faEyeSlash : faEye} style={{color: "#7f5af0", fontSize: "1.2rem"}} />
             </div>
           </div>
-          {/* alamat */}
+          {/* alamat
           <div className="alamat-register">
             <FontAwesomeIcon
               icon={faLocationDot}
@@ -139,7 +136,7 @@ export default function RegisterAdmin() {
               value={alamat}
               onChange={(e) => setAlamat(e.target.value)}
             />
-          </div>
+          </div> */}
           <Button className="btn-register" textbtn="Register" accept="submit" />
           <p className="link-login">
             If you have account,

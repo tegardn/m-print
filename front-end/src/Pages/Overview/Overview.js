@@ -12,7 +12,7 @@ export default function Overview() {
   // proses angka product
   async function productTotal() {
     try {
-      const res = await axios.get('http://localhost:5000/products', {
+      const res = await axios.get('http://localhost:8000/products', {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -30,7 +30,7 @@ export default function Overview() {
   // proses angka customer
   async function customerTotal() {
     try {
-      const res = await axios.get('http://localhost:5000/users', {
+      const res = await axios.get('http://localhost:8000/users', {
         headers: {
           Authorization: `Bearer ${token}`
         }

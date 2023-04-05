@@ -27,10 +27,8 @@ table {
     border: 1px solid black;
 }
 
-.user-table td:nth-of-type(5),
-.user-table td:nth-of-type(2),
-.user-table td:nth-of-type(4),
-.user-table td:last-of-type {
+
+.user-table td {
     text-align: center;
 }
 
