@@ -15,7 +15,10 @@ export default function Menu() {
       </li>
       <li>
         <Link to="/products" className='link'>Product</Link>
-      </li>  
+      </li>
+      <li>
+        <Link to="/orders" className='link'>orders</Link>
+      </li>    
     </ul>
   )
 }

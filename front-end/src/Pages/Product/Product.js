@@ -79,6 +79,7 @@ export default function Product() {
             value={searchP}
             onChange={e => setSearchP(e.target.value)}
             onKeyDown={e => e.key === 'Enter' ? searchProductResult(searchP) : null}
+            style={{ backgroundColor: "#21212F", color: "#FFF" }}
           />
           <FontAwesomeIcon
             onClick={() => searchProductResult(searchP)}
@@ -90,7 +91,7 @@ export default function Product() {
           <Link to="/products/add">
             <FontAwesomeIcon
               icon={faPlus}
-              style={{ color: "#7f5af0", fontSize: "24px" }}
+              style={{ color: "#FFC42A", fontSize: "24px" }}
             />
           </Link>
         </div>

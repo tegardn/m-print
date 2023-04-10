@@ -7,10 +7,14 @@
 .p-image {
     width: 40px;
     height: 40px;
-    border: 1px solid #7f5af0;
+    border: 1px solid #ffffff;
     border-radius: 50%;
     display: flex;
     align-items: flex-end;
     justify-content: center;
     overflow: hidden;
+}
+
+.p-text {
+    color: #fff;
 }

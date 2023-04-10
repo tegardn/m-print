@@ -34,7 +34,7 @@ export default function Profile() {
       <div className="p-image">
         <FontAwesomeIcon
           icon={faUser}
-          style={{ color: "#7f5af0", fontSize: "30px" }}
+          style={{ color: "#fff", fontSize: "30px" }}
         />
       </div>
     </div>

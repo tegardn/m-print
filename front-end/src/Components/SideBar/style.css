@@ -1,5 +1,5 @@
 .sidebar {
-    background-color: #16161a;
+    background-color: #272731;
     height: 100%;
     width: 200px;
     position: fixed;
@@ -10,6 +10,8 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    border-right: 1px solid white;
+    box-shadow: 5px 0px 10px rgba(132, 132, 132, 0.185);
 }
 
 .container-menu {

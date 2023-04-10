@@ -18,6 +18,8 @@ import RegisterAdmin from "../Pages/RegisterAdmin/RegisterAdmin";
 import AddProduct from "../Pages/AddProduct/AddProduct";
 import UpdateProduct from "../Pages/UpdateProduct/UpdateProduct";
 import HomePage from "../Pages/HomePage";
+import Orders from "../Pages/Order/index";
+import OrdersChangeStatus from "../Pages/OrderChangeStatus";
 
 export default function Router() {
   return (
@@ -29,6 +31,8 @@ export default function Router() {
           <Route path="/products" element={<Product />} />
           <Route path="/products/add" element={<AddProduct />} />
           <Route path="/products/edit/:id" element={<UpdateProduct />} />
+          <Route path="/orders" element={<Orders />} />
+          <Route path="/orders/edit/:id" element={<OrdersChangeStatus />} />
         </Route>
         <Route element={<CustomerLayout />}>
           <Route path="/" element={<HomePage />} />

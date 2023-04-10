@@ -1,0 +1,50 @@
+.order-changes.wrapper {
+    flex-direction: column;
+    align-items: center;
+}
+
+.order-changes h2 {
+    font-size: 2.5rem;
+    padding-bottom: 30px;
+}
+
+.order-changes-detail.wrapper {
+    justify-content: center;
+    width: 100%;
+}
+
+.point-order.wrapper {
+    flex-direction: column;
+    align-items: center;
+    row-gap: 12px;
+}
+
+.content-order.wrapper {
+    flex-direction: column;
+    row-gap: 12px;
+}
+
+
+.tgl-point.wrapper, .customer-point.wrapper, .alamat-point.wrapper, .produk-point.wrapper, .harga-point.wrapper, .status-point.wrapper {
+    justify-content: space-between;
+    width: 250px;
+    padding-right: 10px;
+}
+
+.order-changes img {
+    width: 200px;
+    margin: 20px auto;
+}
+
+.btn-accept {
+    font-size: 1.1rem;
+    background-color: #7f5af0;
+    padding: 10px;
+    border: none;
+    width: 30%;
+    border-radius: 10px;
+    color: #fffffe;
+    margin: 30px 0;
+    font-weight: 500;
+    cursor: pointer;
+}
